@@ -9,7 +9,7 @@ from pathlib import Path
 from datetime import datetime
 
 # TODO: mover funciones a un archivo core.py y dejar solo ejecución en runner.py
-
+path_forms ="https://forms.office.com/r/8RQ3Qxtxvv"
 pyautogui.FAILSAFE = True
 pyautogui.PAUSE = 1 #0.3
 
@@ -34,19 +34,53 @@ def fill_form(data, start_coords):
     # TODO: usar coordenadas manuales para posicionar cursor
     # Ejemplo: start_coords = (450, 320)
     # Debes documentar resolución usada en README y aquí
-    
-    take_screenshot("before") 
 
-    pyautogui.click(start_coords[0], start_coords[1]) 
-    pyautogui.typewrite(data["nombre"]) 
-    pyautogui.press("tab") 
-    pyautogui.typewrite(data["correo"]) 
-    pyautogui.press("tab") 
-    pyautogui.typewrite(data["equipo"]) 
-    pyautogui.press("enter") 
+    # Paso 1: Abrir menú de inicio
+    pyautogui.press('win')
+    time.sleep(1)
+
+    # Paso 2: Buscar Edge
+    pyautogui.write('Edge', interval=0.1)
+    time.sleep(3)
+    pyautogui.press('enter')
+
+    # Paso 3: Esperar a que Edge abra
+    time.sleep(5)  # Ajusta según tu máquina
+
+    # Paso 4: Escribir URL del formulario
+    pyautogui.write(path_forms, interval=0.1)
+    pyautogui.press('enter')
+
+    # Paso 5: Esperar a que cargue el formulario
+    time.sleep(5)
+    #Tomar la primera captura
+    take_screenshot("before")
+    ####Falta iniciar el primer campo del forms####
+    #Avanza al segundo campo y lo llena
+    pyautogui.press("tab")
+    pyautogui.typewrite(data["nombre1"])
+    time.sleep(3)
+    pyautogui.press("enter")
+    pyautogui.typewrite(data["nombre2"])
+    time.sleep(3)
+    pyautogui.press("enter")
+    pyautogui.typewrite(data["nombre3"])
+    time.sleep(3)
+    #Toma la segunda captura
     take_screenshot("during") 
-    time.sleep(1) 
+    time.sleep(1)
+    #Avanza al tercer campo y lo llena
+    pyautogui.press("tab") 
+    pyautogui.typewrite(data["matriculas"])
+    time.sleep(3) 
+    #Avanza al 4to campo y escoge alguna opción
+    pyautogui.press("tab") 
+    pyautogui.press("space") 
+    #Toma la 3ra y última captura
     take_screenshot("after")
+    #Avanza al boton enviár y le da clic
+    pyautogui.press("tab")
+    pyautogui.press("enter")
     
 def main():
     logging.basicConfig(filename="run.log", level=logging.INFO,
@@ -82,5 +116,6 @@ def main():
     fill_form(data, start_coords)
     
     logging.info("Fin del examen")
+
 
 
