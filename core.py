@@ -34,7 +34,8 @@ def fill_form(data, start_coords):
     # TODO: usar coordenadas manuales para posicionar cursor
     # Ejemplo: start_coords = (450, 320)
     # Debes documentar resolución usada en README y aquí
-
+    x = 1041
+    y = 443
     # Paso 1: Abrir menú de inicio
     pyautogui.press('win')
     time.sleep(1)
@@ -55,7 +56,11 @@ def fill_form(data, start_coords):
     time.sleep(5)
     #Tomar la primera captura
     take_screenshot("before")
-    ####Falta iniciar el primer campo del forms####
+    pyautogui.moveTo(x, y)
+    pyautogui.click()
+    time.sleep(1)
+    pyautogui.press("enter")
+    time.sleep(1)
     #Avanza al segundo campo y lo llena
     pyautogui.press("tab")
     pyautogui.typewrite(data["nombre1"])
@@ -82,6 +87,16 @@ def fill_form(data, start_coords):
     pyautogui.press("tab")
     pyautogui.press("enter")
     
+def solicitar_coordenada(eje):
+    while True:
+        try:
+            valor = int(input(f"Introduzca el valor de {eje}: ").strip())
+            return valor
+        except ValueError:
+            print(f" Error: el valor de {eje} debe ser un número entero. Intente de nuevo.")
+
+
+
 def main():
     logging.basicConfig(filename="run.log", level=logging.INFO,
                         format="%(asctime)s %(levelname)s %(message)s", encoding="utf-8")
