@@ -25,4 +25,4 @@ A continuación se detallan los miembros del equipo y sus contribuciones:
     * Validaciones de entradas de usuario.
     * Agregar información al diccionario.
 * **Rodolfo Uriel Hernandez de Leon:**
-    * Creación del código necesario para rellenar el formulario.
+    * Creación del código necesario para lograr llenar y enviar el formulario.
