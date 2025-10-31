@@ -1,14 +1,12 @@
 # core.py
-
 import subprocess
 import pyautogui
 import time
 import logging
 from datetime import datetime
 from pathlib import Path
-from datetime import datetime
 
-# TODO: mover funciones a un archivo core.py y dejar solo ejecución en runner.py
+#TODO mover funciones a un archivo core.py y dejar solo ejecución en runner.py
 path_forms ="https://forms.office.com/r/8RQ3Qxtxvv"
 pyautogui.FAILSAFE = True
 pyautogui.PAUSE = 1 #0.3
@@ -30,7 +28,7 @@ def take_screenshot(name):
     img.save(path)
     return path
 
-def fill_form(data, start_coords):
+def fill_form(data):
     # TODO: usar coordenadas manuales para posicionar cursor
     # Ejemplo: start_coords = (450, 320)
     # Debes documentar resolución usada en README y aquí
@@ -41,7 +39,7 @@ def fill_form(data, start_coords):
     time.sleep(1)
 
     # Paso 2: Buscar Edge
-    pyautogui.write('Edge', interval=0.1)
+    pyautogui.write('Brave', interval=0.1)
     time.sleep(3)
     pyautogui.press('enter')
 
@@ -53,14 +51,20 @@ def fill_form(data, start_coords):
     pyautogui.press('enter')
 
     # Paso 5: Esperar a que cargue el formulario
-    time.sleep(5)
+    time.sleep(3)
     #Tomar la primera captura
     take_screenshot("before")
+    #Selecciona el primer campo
     pyautogui.moveTo(x, y)
     pyautogui.click()
     time.sleep(1)
+    pyautogui.typewrite(data["fecha"])
     pyautogui.press("enter")
+    pyautogui.press("tab")
     time.sleep(1)
+    #Llena el primer campo
+    pyautogui.typewrite(data["fecha"])
+    time.sleep(2)
     #Avanza al segundo campo y lo llena
     pyautogui.press("tab")
     pyautogui.typewrite(data["nombre1"])
@@ -81,11 +85,11 @@ def fill_form(data, start_coords):
     #Avanza al 4to campo y escoge alguna opción
     pyautogui.press("tab") 
     pyautogui.press("space") 
-    #Toma la 3ra y última captura
-    take_screenshot("after")
     #Avanza al boton enviár y le da clic
     pyautogui.press("tab")
     pyautogui.press("enter")
+    #Toma la 3ra y última captura
+    take_screenshot("after")
     
 def solicitar_coordenada(eje):
     while True:
@@ -94,8 +98,6 @@ def solicitar_coordenada(eje):
             return valor
         except ValueError:
             print(f" Error: el valor de {eje} debe ser un número entero. Intente de nuevo.")
-
-
 
 def main():
     logging.basicConfig(filename="run.log", level=logging.INFO,
@@ -118,19 +120,20 @@ def main():
     }
     
     # TODO: permitir que el usuario defina las coordenadas manualmente
-    print("Introduzca las coordenadas deseadas.")
-    x = int(input("Introduzca el valor de x: ").strip())
-    y = int(input("Introduzca el valor de y: ").strip())
-    start_coords = (x, y) # ← deben ajustar esto según su pantalla
+    #print("Introduzca las coordenadas deseadas.")
+    #x = int(input("Introduzca el valor de x: ").strip())
+    #y = int(input("Introduzca el valor de y: ").strip())
+    #start_coords = (x, y)
     
     code, out, err = run_powershell("Get-Date")
     logging.info(f"PS code: {code}")
     logging.info(f"PS output: {out}")
     logging.info(f"PS error: {err}")
     
-    fill_form(data, start_coords)
+    fill_form(data)
     
     logging.info("Fin del examen")
+
 
 
 
