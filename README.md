@@ -18,11 +18,11 @@ Basado en los requerimientos del `README.txt`:
 A continuación se detallan los miembros del equipo y sus contribuciones:
 
 * **Victor Adrian Rodriguez Ortiz:**
-    * Reestructurar el código en 2 módulos
-    * Agregar información al diccionario
-    * Crear el repositorio
-    * Hacer ejecutable los scripts
-* **[Nombre Integrante 2]:**
-    * [Escribe aquí su contribución...]
-* **[Nombre Integrante 3]:**
-    * [Escribe aquí su contribución...]
+    * Reestructurar el código en 2 módulos.
+    * Crear el repositorio.
+    * Hacer ejecutables los scripts.
+* **Jose Rodrigo Perez Gonzalez:**
+    * Validaciones de entradas de usuario.
+    * Agregar información al diccionario.
+* **Rodolfo Uriel Hernandez de Leon:**
+    * Creación del código necesario para rellenar el formulario.
