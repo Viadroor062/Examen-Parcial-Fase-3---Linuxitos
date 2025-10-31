@@ -1,6 +1,6 @@
 # Examen Parcial - Fase III
 
-[cite_start]Este repositorio contiene el código fuente y los entregables para el examen parcial de la Fase III[cite: 2].
+Este repositorio contiene el código fuente y los entregables para el examen parcial de la Fase III.
 
 ## 📄 Información de Ejecución
 
@@ -17,8 +17,11 @@ Basado en los requerimientos del `README.txt`:
 
 A continuación se detallan los miembros del equipo y sus contribuciones:
 
-* **[Nombre Integrante 1]:**
-    * [Escribe aquí su contribución...]
+* **Victor Adrian Rodriguez Ortiz:**
+    * Reestructurar el código en 2 módulos
+    * Agregar información al diccionario
+    * Crear el repositorio
+    * Hacer ejecutable los scripts
 * **[Nombre Integrante 2]:**
     * [Escribe aquí su contribución...]
 * **[Nombre Integrante 3]:**
